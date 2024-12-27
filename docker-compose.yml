@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  redis:
+    image: redis:7.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass ${REDIS_PASSWORD} # 비밀번호 설정
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD} # 비밀번호를 환경 변수에서 읽음
+    volumes:
+      - redis_data:/data # 데이터 지속성을 위한 볼륨 설정
+
+volumes:
+  redis_data:
